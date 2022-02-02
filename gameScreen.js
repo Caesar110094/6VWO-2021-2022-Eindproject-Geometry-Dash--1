@@ -18,6 +18,9 @@ class GameScreen {
     if (frameCount % 100 == 50) {
       this.blocks.push(new Block(500, 350));
     }
+    if (frameCount % 100 == 70) {
+      this.blocks.push(new Block(500, 270));
+    }
 
     // Draw dingen.
     this.spikes.forEach(spike =>
@@ -48,7 +51,7 @@ class GameScreen {
 
     if (stepBlocks.length > 0) {
       var lowestY = 380;
-      for (let i = 1; i < stepBlocks.length; i++) {
+      for (let i = 0; i < stepBlocks.length; i++) {
         if (stepBlocks[i].y < lowestY) {
           lowestY = stepBlocks[i].y;
         }
