@@ -1,6 +1,6 @@
 class DeadScreen {
   draw() {
-    text("Hello", 50, 50);
+    text("Game Over Druk op [SPACE] verder gaan", 50, 50);
 
     return 1;
   }

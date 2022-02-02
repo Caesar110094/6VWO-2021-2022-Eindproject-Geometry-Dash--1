@@ -36,8 +36,6 @@ function draw() {
   else {
     newScreen = deadScreen.draw();
   }
-
-
 }
 
 function keyPressed() {
