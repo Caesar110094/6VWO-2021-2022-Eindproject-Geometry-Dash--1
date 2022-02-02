@@ -11,14 +11,12 @@ function setup() {
 function draw() {
   background(225);
 
-
-
   player.drawPlayer();
 
 }
 
 function keyPressed() {
-  if (keyCode == 32) {
+  if (keyCode == 32 && player.y >= 380) {
     player.vy -= 5;
   }
 }
