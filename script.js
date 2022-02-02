@@ -1,42 +1,50 @@
-var player;
-var spikes = [];
+var gameScreen;
+var deadScreen;
+
+/*
+0 = GameScreen
+1 = DeadScreen
+*/
+var currentScreen = 0;
+var newScreen = 0;
 
 function setup() {
   createCanvas(500, 400);
 
-  player = new Player(100, 200);
+  gameScreen = new GameScreen();
+  gameScreen.setup();
+
+  deadScreen = new DeadScreen();
 }
 
 function draw() {
   background(225);
+  
+  if (currentScreen != newScreen) {
+    currentScreen = newScreen;
 
-  if (frameCount % 100 == 0) {
-    spikes.push(new Spike(500, 350));
-  }
-
-  spikes.forEach(spike =>
-  {
-    spike.draw();
-  });
-
-  var isColliding = false;
-  for (let i = 0; i < spikes.length; i++) {
-    if (spikes[i].checkCollision(player)) {
-      isColliding = true;
-      break;
+    if (currentScreen == 0) {
+      gameScreen.setup();
+    }
+    else {
     }
   }
 
-  if (isColliding) {
-    player.drawPlayer("red");
+  if (currentScreen == 0) {
+    newScreen = gameScreen.draw();
   }
   else {
-    player.drawPlayer("green");
+    newScreen = deadScreen.draw();
   }
+
+
 }
 
 function keyPressed() {
-  if (keyCode == 32 && player.y >= 380) {
-    player.vy -= 5;
+  if (currentScreen == 0) {
+    newScreen = gameScreen.keyPressed();
+  }
+  else {
+    newScreen = deadScreen.keyPressed();
   }
 }

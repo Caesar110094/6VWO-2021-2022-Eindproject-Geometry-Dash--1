@@ -10,7 +10,7 @@ class Spike {
     fill("red");
     rect(this.x, this.y, this.w, this.h);
 
-    this.x -= 2;
+    this.x -= 5;
   }
 
   checkCollision(player) {
