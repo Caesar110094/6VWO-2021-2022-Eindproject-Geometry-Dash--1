@@ -2,13 +2,15 @@ class Player {
   constructor(x, y) {
     this.x = x;
     this.y = y;
+    this.w = 20;
+    this.h = 20;
     this.vy = 0;
     this.gravity = 0.2;
   }
 
-  drawPlayer() {
-    fill("red");
-    circle(this.x, this.y, 10)
+  drawPlayer(color) {
+    fill(color);
+    rect(this.x, this.y, this.w, this.h);
 
     this.vy += this.gravity;
 

@@ -5,14 +5,10 @@ function setup() {
   createCanvas(500, 400);
 
   player = new Player(100, 200);
-
 }
-
 
 function draw() {
   background(225);
-
-  player.drawPlayer();
 
   if (frameCount % 100 == 0) {
     spikes.push(new Spike(500, 350));
@@ -22,6 +18,21 @@ function draw() {
   {
     spike.draw();
   });
+
+  var isColliding = false;
+  for (let i = 0; i < spikes.length; i++) {
+    if (spikes[i].checkCollision(player)) {
+      isColliding = true;
+      break;
+    }
+  }
+
+  if (isColliding) {
+    player.drawPlayer("red");
+  }
+  else {
+    player.drawPlayer("green");
+  }
 }
 
 function keyPressed() {

@@ -14,13 +14,14 @@ class Spike {
   }
 
   checkCollision(player) {
-    if (player.x < block.x + block.w && player.x + player.w > block.x
-      && player.y > block.y && player.y + player.h < block.y + block.h) {
+    if (player.x < this.x + this.w &&
+        player.x + player.w > this.x &&
+        player.y < this.y + this.h &&
+        player.h + player.y > this.y) {
       return true;
     }
     else {
       return false;
     }
   }
-
 }
