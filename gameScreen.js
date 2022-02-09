@@ -57,7 +57,9 @@ class GameScreen {
         }
       }
 
-      console.log(lowestY);
+      if (this.player.y > lowestY) {
+        return 1;
+      }
 
       this.player.ground = lowestY;
     }
