@@ -11,10 +11,10 @@ class GameScreen {
   }
   
   draw() {
+    // Spawner
     if (frameCount % 100 == 0) {
       this.spikes.push(new Spike(500, 350));
     }
-    
     if (frameCount % 100 == 50) {
       this.blocks.push(new Block(500, 350));
     }
@@ -22,7 +22,7 @@ class GameScreen {
       this.blocks.push(new Block(500, 270));
     }
 
-    // Draw dingen.
+    // Draw dingen. Beweegt de wereld naar links.
     this.spikes.forEach(spike =>
     {
       spike.draw();
@@ -32,49 +32,34 @@ class GameScreen {
       block.draw();
     });
 
-    var isColliding = false;
-    for (let i = 0; i < this.spikes.length; i++) {
-      if (this.spikes[i].checkCollision(this.player)) {
-        isColliding = true;
-        break;
-      }
-    }
-
-    // blokken die onder de speler zitten.
-    var stepBlocks = [];
+    // Check blok-speler horizontale collision.
     for (let i = 0; i < this.blocks.length; i++) {
-      if ((this.player.x + this.player.w >= this.blocks[i].x
-      && this.player.x + this.player.w <= this.blocks[i].x + this.blocks[i].w) || (this.player.x >= this.blocks[i].x && this.player.x <= this.blocks[i].x + this.blocks[i].w)) {
-        stepBlocks.push(this.blocks[i]);
-      }
-    }
-
-    if (stepBlocks.length > 0) {
-      var lowestY = 380;
-      for (let i = 0; i < stepBlocks.length; i++) {
-        if (stepBlocks[i].y < lowestY) {
-          lowestY = stepBlocks[i].y;
-        }
-      }
-
-      if (this.player.y > lowestY) {
+      if (this.blocks[i].checkCollision(this.player)) {
         return 1;
       }
-
-      this.player.ground = lowestY;
-    }
-    else {
-      this.player.ground = 380;
     }
 
-    if (isColliding) {
-      this.player.drawPlayer("red");
-      return 1;
+    this.player.drawPlayer('red');
+
+    // Check block-speler verticale collision.
+    this.player.ground = this.player.trueGround;
+    this.blocks.forEach(block =>
+    {
+      if (block.checkCollision(this.player)) {
+        this.player.ground = block.y;
+      }
+    });
+
+    // Check spike-speler collision.
+    for (let i = 0; i < this.spikes.length; i++) {
+      if (this.spikes[i].checkCollision(this.player)) {
+        return 1;
+      }
     }
-    else {
-      this.player.drawPlayer("green");
-      return 0;
-    }
+
+    this.player.checkGround();
+  
+    return 0;
   }
 
   keyPressed() {
