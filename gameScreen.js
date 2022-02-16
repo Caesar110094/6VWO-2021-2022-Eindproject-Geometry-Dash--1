@@ -51,7 +51,12 @@ class GameScreen {
     this.blocks.forEach(block =>
     {
       if (block.checkCollision(this.player)) {
-        this.player.ground = block.y;
+        if (this.player.y > block.y) {
+          return 1;
+        }
+        else {
+          this.player.ground = block.y;
+        }
       }
     });
 
