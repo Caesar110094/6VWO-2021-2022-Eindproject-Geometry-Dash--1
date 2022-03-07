@@ -6,6 +6,8 @@ class Player {
     this.h = 30;
     this.vy = 0;
     this.gravity = 0.4;
+    this.trueGround = 380;
+    this.ground = this.trueGround;
   }
 
   drawPlayer(color) {
@@ -14,20 +16,17 @@ class Player {
 
     this.vy += this.gravity;
     this.y += this.vy;
+  }
 
-    if (this.y > 380) {
+  checkGround() {
+    if (this.y + this.h > this.ground) {
       this.vy = 0;
-      this.y = 380;
-    }
-
-    if (this.y < 0) {
-      this.vy = 0;
-      this.y = 0;
+      this.y = this.ground - this.h;
     }
   }
 
   onKeyPressed() {
-    if (keyCode == 32 && this.y >= 380) {
+    if (keyCode == 32 && this.y + this.h >= this.ground) {
       this.vy -= 10;
     }
   }

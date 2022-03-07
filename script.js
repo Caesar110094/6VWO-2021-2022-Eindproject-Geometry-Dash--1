@@ -8,13 +8,17 @@ var deadScreen;
 var currentScreen = 0;
 var newScreen = 0;
 
+function preload() {
+  gameScreen = new GameScreen();
+  deadScreen = new DeadScreen();
+
+  gameScreen.preload();
+}
+
 function setup() {
   createCanvas(500, 400);
 
-  gameScreen = new GameScreen();
   gameScreen.setup();
-
-  deadScreen = new DeadScreen();
 }
 
 function draw() {
@@ -36,8 +40,6 @@ function draw() {
   else {
     newScreen = deadScreen.draw();
   }
-
-
 }
 
 function keyPressed() {
