@@ -13,6 +13,7 @@ function preload() {
   deadScreen = new DeadScreen();
 
   gameScreen.preload();
+  //fg = loadImage("ForegroundFloor.png");
 }
 
 function setup() {

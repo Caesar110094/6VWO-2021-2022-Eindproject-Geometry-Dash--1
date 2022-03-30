@@ -10,6 +10,14 @@ class Player {
     this.ground = this.trueGround;
   }
 
+  preload() {
+    playerForeward = loadAnimation ("Pictures/Player (Sprites)/Foreward/Foreward 1.png","Pictures/Player (Sprites)/Foreward/Foreward 2.png","Pictures/Player(Sprites)/Foreward/Foreward 3&7.png","Pictures/Player (Sprites)/Foreward/Foreward 4.png","Pictures/Player (Sprites)/Foreward/Foreward 5.png","Pictures/Player (Sprites)/Foreward/Foreward 6.png","Pictures/Player (Sprites)/Foreward/Foreward 8.png");
+    playerJump = loadAnimation ("Pictures/Player (Sprites)/Foreward/Foreward 1.png","Pictures/Player (Sprites)/Jump/Jump 1.png","Pictures/Player (Sprites)/Jump/Jump 2.png","Pictures/Player (Sprites)/Jump/Jump 3.png","Pictures/Player (Sprites)/Jump/Jump 4.png","Pictures/Player (Sprites)/Jump/Jump 5.png","Pictures/Player (Sprites)/Jump/Jump 6.png","Pictures/Player (Sprites)/Foreward/Foreward 1.png");
+    playerDeath =  loadAnimation ("Pictures/Player (Sprites)/Foreward/Foreward 5.png","Pictures/Player (Sprites)/Foreward/Foreward 6.png","Pictures/Player (Sprites)/Death/Death 1.png","Pictures/Player (Sprites)/Death/Death 2.png","Pictures/Player (Sprites)/Death/Death 3.png","Pictures/Player (Sprites)/Death/Death 4.png");
+    
+  }
+  
+
   drawPlayer(color) {
     fill(color);
     rect(this.x, this.y, this.w, this.h);
