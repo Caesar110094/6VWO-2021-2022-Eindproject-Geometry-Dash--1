@@ -8,7 +8,7 @@ class Spike {
   }
 
   draw() {
-    image(this.image,this.x, this.y, this.w, this.h);
+    image(this.image, this.x, this.y, this.w, this.h);
 
     this.x -= 5;
   }
