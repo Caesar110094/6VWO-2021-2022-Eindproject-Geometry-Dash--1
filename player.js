@@ -61,7 +61,7 @@ class Player {
   }
 
   setup() {
-    
+    this.vy = 0;
   }
   
   drawPlayer(color) {

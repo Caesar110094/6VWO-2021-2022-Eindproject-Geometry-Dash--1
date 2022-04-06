@@ -10,7 +10,7 @@ class GameScreen {
   }
   
   preload() {
-    this.levels.push(loadImage('Images/Level0.png'));
+    this.levels.push(loadImage('Images/LevelJumpPadExample.png'));
     this.background = loadImage('Pictures/Layers/Background.png');
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();
@@ -88,7 +88,7 @@ class GameScreen {
     // Check jump pad en speler collision.
     for (let i = 0; i < this.jumpPads.length; i++) {
       if (this.jumpPads[i].checkCollision(this.player)) {
-        this.player.vy -= 15;
+        this.player.vy -= 10;
       }
     }
 
@@ -124,6 +124,9 @@ class GameScreen {
       if (a == 255) {
         if (r == 255 && g == 0 && b == 0) {
           this.spikes.push(new Spike(offsetX + x * 50, offsetY - y * 50));
+        }
+        else if (r == 255 && g == 255 && b == 0) {
+          this.jumpPads.push(new JumpPad(offsetX + x * 50, offsetY - y * 50));
         }
         else if (r == 0 && g == 0 && b == 0) {
           this.blocks.push(new Block(offsetX + x * 50, offsetY - y * 50));
