@@ -5,11 +5,13 @@ class Block {
     this.w = 50;
     this.h = 50;
     this.vx = 5;
+    this.image = loadImage("Pictures/Objects/Slime block.png");
   }
 
+
+
   draw() {
-    fill("green");
-    rect(this.x, this.y, this.w, this.h);
+    image(this.image,this.x, this.y, this.w, this.h);
 
     this.x -= this.vx;
   }

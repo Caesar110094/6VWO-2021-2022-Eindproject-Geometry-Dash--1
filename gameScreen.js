@@ -20,12 +20,13 @@ class GameScreen {
     this.blocks = [];
 
     this.spawnLevel(this.levels[0], 500, 380);
+    this.player.setup();
   }
   
   draw() {
     // Draw achtergrond.
     image(this.background, 0, 0);
-    image(this.foregroundFloor, 0, 0);
+    image(this.foregroundFloor, 0, 300);
     
     // Spawner
     // if (frameCount % 100 == 0) {

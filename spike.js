@@ -4,11 +4,11 @@ class Spike {
     this.y = y;
     this.w = 50;
     this.h = 50;
+    this.image = loadImage("Pictures/Objects/Spikes.png");
   }
 
   draw() {
-    fill("red");
-    rect(this.x, this.y, this.w, this.h);
+    image(this.image,this.x, this.y, this.w, this.h);
 
     this.x -= 5;
   }
