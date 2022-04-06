@@ -4,10 +4,15 @@ class GameScreen {
     this.spikes = [];
     this.blocks = [];
     this.levels = [];
+    this.background = null;
+    this.foregroundFloor = null;
   }
   
   preload() {
     this.levels.push(loadImage('Images/Level0.png'));
+    this.background = loadImage('Pictures/Layers/Background.png');
+    this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
+    this.player.preload();
   }
 
   setup() {
@@ -18,6 +23,10 @@ class GameScreen {
   }
   
   draw() {
+    // Draw achtergrond.
+    image(this.background, 0, 0);
+    image(this.foregroundFloor, 0, 0);
+    
     // Spawner
     // if (frameCount % 100 == 0) {
     //   this.spikes.push(new Spike(500, 350));
