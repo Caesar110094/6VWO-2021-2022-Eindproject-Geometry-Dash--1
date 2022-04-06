@@ -9,7 +9,9 @@ class JumpPad {
   }
 
   draw() {
-    image(this.image,this.x, this.y, this.w, this.h);
+    fill('yellow');
+    rect(this.x, this.y + this.h - 5, this.w, 5);
+    //image(this.image,this.x, this.y, this.w, this.h);
 
     this.x -= this.vx;
   }
