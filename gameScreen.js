@@ -10,7 +10,8 @@ class GameScreen {
   }
   
   preload() {
-    this.levels.push(loadImage('Images/LevelJumpPadExample.png'));
+    this.levels.push(loadImage('Images/Level2.png'));
+    //this.levels.push(loadImage('Images/LevelJumpPadExample.png'));
     this.background = loadImage('Pictures/Layers/Background.png');
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();

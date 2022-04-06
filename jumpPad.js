@@ -17,8 +17,8 @@ class JumpPad {
   checkCollision(player) {
     if (player.x < this.x + this.w &&
         player.x + player.w > this.x &&
-        player.y < this.y + this.h &&
-        player.h + player.y > this.y) {
+        player.y + player.h >= this.y + this.h - 5 &&
+        player.y < this.y + this.h) {
       return true;
     }
     else {
