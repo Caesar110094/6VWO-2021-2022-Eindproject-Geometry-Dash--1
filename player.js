@@ -82,7 +82,7 @@ class Player {
   }
 
   checkGround() {
-    if (this.y + this.h > this.ground) {
+    if (this.y + this.h > this.ground && this.vy > 0) {
       this.vy = 0;
       this.y = this.ground - this.h;
       
