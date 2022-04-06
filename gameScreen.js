@@ -3,6 +3,7 @@ class GameScreen {
     this.player = new Player(100, 200);
     this.spikes = [];
     this.blocks = [];
+    this.jumpPads = [];
     this.levels = [];
     this.background = null;
     this.foregroundFloor = null;
@@ -18,6 +19,7 @@ class GameScreen {
   setup() {
     this.spikes = [];
     this.blocks = [];
+    this.jumpPads = [];
 
     this.spawnLevel(this.levels[0], 500, 380);
     this.player.setup();
@@ -38,6 +40,9 @@ class GameScreen {
     // if (frameCount % 100 == 70) {
     //   this.blocks.push(new Block(500, 270));
     // }
+    // if (frameCount % 100 == 70) {
+    //   this.jumpPads.push(new JumpPad(500, 270));
+    // }
 
     // Draw dingen. Beweegt de wereld naar links.
     for (let i = 0; i < this.spikes.length; i++) {
@@ -45,6 +50,9 @@ class GameScreen {
     }
     for (let i = 0; i < this.blocks.length; i++) {
       this.blocks[i].draw();
+    }
+    for (let i = 0; i < this.jumpPads.length; i++) {
+      this.jumpPads[i].draw();
     }
 
     // Check blok-speler horizontale collision.
@@ -74,6 +82,13 @@ class GameScreen {
     for (let i = 0; i < this.spikes.length; i++) {
       if (this.spikes[i].checkCollision(this.player)) {
         return 1;
+      }
+    }
+
+    // Check jump pad en speler collision.
+    for (let i = 0; i < this.jumpPads.length; i++) {
+      if (this.jumpPads[i].checkCollision(this.player)) {
+        this.player.vy -= 15;
       }
     }
 
