@@ -9,9 +9,9 @@ class JumpPad {
     this.image = loadImage("Pictures/Objects/Slime block.png");
   }
 
-  draw() {
+  draw(camera) {
     fill('yellow');
-    rect(this.x, this.y + this.h - this.collisionHeight, this.w, this.collisionHeight);
+    rect(this.x - camera.x, this.y + this.h - this.collisionHeight - camera.y, this.w, this.collisionHeight);
     //image(this.image,this.x, this.y, this.w, this.h);
 
     this.x -= this.vx;

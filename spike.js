@@ -7,8 +7,8 @@ class Spike {
     this.image = loadImage("Pictures/Objects/Spikes.png");
   }
 
-  draw() {
-    image(this.image, this.x, this.y, this.w, this.h);
+  draw(camera) {
+    image(this.image, this.x - camera.x, this.y - camera.y, this.w, this.h);
 
     this.x -= 5;
   }

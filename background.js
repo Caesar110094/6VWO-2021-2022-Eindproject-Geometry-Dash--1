@@ -9,9 +9,9 @@ class Background {
     this.backgroundImage = loadImage('Pictures/Layers/Background.png');
   }
 
-  draw() {
-    image(this.backgroundImage, this.x, 0);
-    image(this.backgroundImage, this.x + 673, 0);
+  draw(camera) {
+    image(this.backgroundImage, this.x, -camera.y);
+    image(this.backgroundImage, this.x + 673, -camera.y);
     this.x += this.vx;
     if (this.x <= -673) {
       this.x = 0;

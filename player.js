@@ -64,8 +64,8 @@ class Player {
     this.vy = 0;
   }
   
-  drawPlayer(color) {
-    image(this.currentImage, this.x, this.y, this.w, this.h);
+  drawPlayer(color, camera) {
+    image(this.currentImage, this.x - camera.x, this.y - camera.y, this.w, this.h);
 
     if (this.currentTimer <= 0) {
       this.currentTimer = this.currentAnimationFrameLength;

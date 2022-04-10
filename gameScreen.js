@@ -1,6 +1,7 @@
 class GameScreen {
   constructor() {
     this.player = new Player(100, 200);
+    this.camera = new Camera();
     this.spikes = [];
     this.blocks = [];
     this.jumpPads = [];
@@ -27,7 +28,7 @@ class GameScreen {
   
   draw() {
     // Draw achtergrond.
-    this.background.draw();
+    this.background.draw(this.camera);
     //image(this.foregroundFloor, 0, 300);
     
     // Spawner
@@ -44,15 +45,17 @@ class GameScreen {
     //   this.jumpPads.push(new JumpPad(500, 270));
     // }
 
+    this.camera.draw(this.player);
+    
     // Draw dingen. Beweegt de wereld naar links.
     for (let i = 0; i < this.spikes.length; i++) {
-      this.spikes[i].draw();
+      this.spikes[i].draw(this.camera);
     }
     for (let i = 0; i < this.blocks.length; i++) {
-      this.blocks[i].draw();
+      this.blocks[i].draw(this.camera);
     }
     for (let i = 0; i < this.jumpPads.length; i++) {
-      this.jumpPads[i].draw();
+      this.jumpPads[i].draw(this.camera);
     }
 
     // Check blok-speler horizontale collision.
@@ -62,7 +65,7 @@ class GameScreen {
       }
     }
 
-    this.player.drawPlayer('red');
+    this.player.drawPlayer('red', this.camera);
 
     // Check block-speler verticale collision.
     this.player.ground = this.player.trueGround;
