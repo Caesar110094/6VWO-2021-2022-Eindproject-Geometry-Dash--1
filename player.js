@@ -5,9 +5,13 @@ class Player {
     this.w = 30;
     this.h = 30;
     this.vy = 0;
+    this.vx = -5;
     this.gravity = 0.4;
     this.trueGround = 380;
     this.ground = this.trueGround;
+    this.worldX = 0;
+    this.startX = x;
+    this.startY = y;
     
     this.forewardAnimation = [];
     this.forewardAnimationFrameLength = 5;
@@ -62,6 +66,9 @@ class Player {
 
   setup() {
     this.vy = 0;
+    this.worldX = 0;
+    this.x = this.startX;
+    this.y = this.startY;
   }
   
   drawPlayer(color, camera) {
@@ -79,6 +86,8 @@ class Player {
     
     this.vy += this.gravity;
     this.y += this.vy;
+
+    this.worldX -= this.vx;
   }
 
   checkGround() {

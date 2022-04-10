@@ -7,6 +7,7 @@ class GameScreen {
     this.jumpPads = [];
     this.levels = [];
     this.background = new Background();
+    this.endX = -1;
   }
   
   preload() {
@@ -101,7 +102,13 @@ class GameScreen {
     }
 
     this.player.checkGround();
-  
+
+    // Check win-scenario.
+    if (this.player.worldX > this.endX) {
+      console.log("win")
+      return 2;
+    }
+    
     return 0;
   }
 
@@ -143,5 +150,8 @@ class GameScreen {
 
       //console.log('Color: ' + level.pixels[i] + ',' + level.pixels[i + 1] + ',' + level.pixels[i + 2] + ',' + level.pixels[i + 3] + ' | Position: ' + x + ',' + y);
     }
+
+    this.endX = offsetX + level.width * 50 + 400;
+    console.log(this.endX);
   }
 }
