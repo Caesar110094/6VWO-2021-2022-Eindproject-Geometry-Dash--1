@@ -5,16 +5,15 @@ class GameScreen {
     this.blocks = [];
     this.jumpPads = [];
     this.levels = [];
-    this.background = null;
-    this.foregroundFloor = null;
+    this.background = new Background();
   }
   
   preload() {
     //this.levels.push(loadImage('Images/Level2.png'));
     this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
-    this.background = loadImage('Pictures/Layers/Background.png');
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();
+    this.background.preload();
   }
 
   setup() {
@@ -28,8 +27,8 @@ class GameScreen {
   
   draw() {
     // Draw achtergrond.
-    image(this.background, 0, 0);
-    image(this.foregroundFloor, 0, 300);
+    this.background.draw();
+    //image(this.foregroundFloor, 0, 300);
     
     // Spawner
     // if (frameCount % 100 == 0) {
