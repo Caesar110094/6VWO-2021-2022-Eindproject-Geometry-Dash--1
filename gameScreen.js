@@ -27,8 +27,8 @@ class GameScreen {
   }
   
   draw() {
-    // Draw achtergrond.
-    this.background.draw(this.camera);
+    
+    
     //image(this.foregroundFloor, 0, 300);
     
     // Spawner
@@ -45,7 +45,11 @@ class GameScreen {
     //   this.jumpPads.push(new JumpPad(500, 270));
     // }
 
+    // Update camera.
     this.camera.draw(this.player);
+
+    // Draw achtergrond.
+    this.background.draw(this.camera);
     
     // Draw dingen. Beweegt de wereld naar links.
     for (let i = 0; i < this.spikes.length; i++) {
