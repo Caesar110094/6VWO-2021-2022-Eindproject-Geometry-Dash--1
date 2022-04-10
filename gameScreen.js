@@ -89,7 +89,8 @@ class GameScreen {
     // Check jump pad en speler collision.
     for (let i = 0; i < this.jumpPads.length; i++) {
       if (this.jumpPads[i].checkCollision(this.player)) {
-        this.player.vy -= 15;
+        this.player.vy = -15;
+        this.player.y = this.jumpPads[i].y + this.jumpPads[i].h - this.jumpPads[i].collisionHeight - this.player.h;
       }
     }
 

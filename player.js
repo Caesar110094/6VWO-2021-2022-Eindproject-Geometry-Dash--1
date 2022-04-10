@@ -94,7 +94,7 @@ class Player {
 
   onKeyPressed() {
     if (keyCode == 32 && this.y + this.h >= this.ground) {
-      this.vy -= 10;
+      this.vy = -10;
 
       this.playAnimation(1);
     }
