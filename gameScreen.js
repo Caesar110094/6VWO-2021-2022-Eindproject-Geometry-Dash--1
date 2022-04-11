@@ -11,8 +11,10 @@ class GameScreen {
   }
   
   preload() {
+    this.levels.push(loadImage('Images/Level1.png'));
     //this.levels.push(loadImage('Images/Level2.png'));
-    this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
+    //this.levels.push(loadImage('Images/Level3.png'));
+    //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();
     this.background.preload();
@@ -28,7 +30,7 @@ class GameScreen {
   }
   
   draw() {
-    
+    this.player.input();
     
     //image(this.foregroundFloor, 0, 300);
     
@@ -71,7 +73,7 @@ class GameScreen {
     }
 
     this.player.drawPlayer('red', this.camera);
-
+    
     // Check block-speler verticale collision.
     this.player.ground = this.player.trueGround;
     this.blocks.forEach(block =>
@@ -113,7 +115,7 @@ class GameScreen {
   }
 
   keyPressed() {
-    this.player.onKeyPressed();
+    //this.player.onKeyPressed();
 
     return 0;
   }
