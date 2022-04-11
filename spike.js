@@ -17,7 +17,7 @@ class Spike {
     if (player.x < this.x + this.w &&
         player.x + player.w > this.x &&
         player.y < this.y + this.h &&
-        player.h + player.y > this.y) {
+        player.h + player.y > this.y + 10) {
       return true;
     }
     else {
