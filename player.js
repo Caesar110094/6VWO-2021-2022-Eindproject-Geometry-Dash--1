@@ -2,8 +2,8 @@ class Player {
   constructor(x, y) {
     this.x = x;
     this.y = y;
-    this.w = 30;
-    this.h = 30;
+    this.w = 40;
+    this.h = 40;
     this.vy = 0;
     this.vx = -5;
     this.gravity = 0.4;
@@ -20,7 +20,7 @@ class Player {
     this.forewardAnimationFrameLength = 5;
 
     this.jumpAnimation = [];
-    this.jumpAnimationFrameLength = 5;
+    this.jumpAnimationFrameLength = 12;
 
     this.currentAnimationType = -1;
     this.currentAnimation = null;
