@@ -12,6 +12,9 @@ class Player {
     this.worldX = 0;
     this.startX = x;
     this.startY = y;
+
+    this.canJumpOnJumpOrb = false;
+    this.hasJumpedOnJumpOrb = false;
     
     this.forewardAnimation = [];
     this.forewardAnimationFrameLength = 5;
@@ -25,6 +28,8 @@ class Player {
     this.currentImage = null;
     this.currentIndex = 0;
     this.currentTimer = 0;
+
+    this.keyWasDown = false;
   }
 
 
@@ -88,6 +93,10 @@ class Player {
     this.y += this.vy;
 
     this.worldX -= this.vx;
+
+    if (!this.canJumpOnJumpOrb) {
+      this.hasJumpedOnJumpOrb = false;
+    }
   }
 
   checkGround() {
@@ -102,8 +111,19 @@ class Player {
   }
 
   input() {
-    if (keyIsDown(32) && this.y + this.h >= this.ground) {
-      this.jump();
+    if (keyIsDown(32) && !this.keyWasDown) {
+      if (this.y + this.h >= this.ground) {
+        this.jump();
+      }
+      else if (this.canJumpOnJumpOrb && !this.hasJumpedOnJumpOrb) {
+        this.jump();
+        this.hasJumpedOnJumpOrb = true;
+      }
+
+      this.keyWasDown = true;
+    }
+    else if (!keyIsDown(32)) {
+      this.keyWasDown = false;
     }
   }
 

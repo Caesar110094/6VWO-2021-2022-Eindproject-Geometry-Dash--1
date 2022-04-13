@@ -5,16 +5,18 @@ class GameScreen {
     this.spikes = [];
     this.blocks = [];
     this.jumpPads = [];
+    this.jumpOrbs = [];
     this.levels = [];
     this.background = new Background();
     this.endX = -1;
   }
   
   preload() {
-    this.levels.push(loadImage('Images/Level1.png'));
+    //this.levels.push(loadImage('Images/Level1.png'));
     //this.levels.push(loadImage('Images/Level2.png'));
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
+    this.levels.push(loadImage('Images/LevelJumpOrbExample.png'));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();
     this.background.preload();
@@ -24,6 +26,7 @@ class GameScreen {
     this.spikes = [];
     this.blocks = [];
     this.jumpPads = [];
+    this.jumpOrbs = [];
 
     this.spawnLevel(this.levels[0], 500, 380);
     this.player.setup();
@@ -64,6 +67,9 @@ class GameScreen {
     for (let i = 0; i < this.jumpPads.length; i++) {
       this.jumpPads[i].draw(this.camera);
     }
+    for (let i = 0; i < this.jumpOrbs.length; i++) {
+      this.jumpOrbs[i].draw(this.camera);
+    }
 
     // Check blok-speler horizontale collision.
     for (let i = 0; i < this.blocks.length; i++) {
@@ -100,6 +106,14 @@ class GameScreen {
       if (this.jumpPads[i].checkCollision(this.player)) {
         this.player.vy = -15;
         this.player.y = this.jumpPads[i].y + this.jumpPads[i].h - this.jumpPads[i].collisionHeight - this.player.h;
+      }
+    }
+
+    // Check jump orb en speler collision.
+    this.player.canJumpOnJumpOrb = false;
+    for (let i = 0; i < this.jumpOrbs.length; i++) {
+      if (this.jumpOrbs[i].checkCollision(this.player)) {
+        this.player.canJumpOnJumpOrb = true;
       }
     }
 
@@ -147,6 +161,9 @@ class GameScreen {
         }
         else if (r == 0 && g == 0 && b == 0) {
           this.blocks.push(new Block(offsetX + x * 50, offsetY - y * 50));
+        }
+        else if (r == 0 && g == 0 && b == 255) {
+          this.jumpOrbs.push(new JumpOrb(offsetX + x * 50, offsetY - y * 50));
         }
       }
 
