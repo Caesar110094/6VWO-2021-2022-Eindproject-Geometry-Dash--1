@@ -11,11 +11,12 @@ class GameScreen {
     this.endX = -1;
     this.attempts = 1;
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
+    this.levelMusic = null;
   }
   
   preload() {
     //this.levels.push(loadImage('Images/Level1.png'));
-    this.levels.push(loadImage('Images/Level2.png'));
+    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
     //this.levels.push(loadImage('Images/LevelJumpOrbExample.png'));
@@ -32,6 +33,8 @@ class GameScreen {
 
     this.spawnLevel(this.levels[0], 500, 380);
     this.player.setup();
+    
+    this.levelMusic.play();
   }
   
   draw() {
@@ -77,6 +80,7 @@ class GameScreen {
     for (let i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].checkCollision(this.player)) {
         this.attempts++;
+        this.levelMusic.stop();
         return 1;
       }
     }
@@ -99,6 +103,7 @@ class GameScreen {
     });
     if (gameOver) {
       this.attempts++;
+      this.levelMusic.stop();
       return 1;
     }
 
@@ -106,6 +111,7 @@ class GameScreen {
     for (let i = 0; i < this.spikes.length; i++) {
       if (this.spikes[i].checkCollision(this.player)) {
         this.attempts++;
+        this.levelMusic.stop();
         return 1;
       }
     }
@@ -130,8 +136,8 @@ class GameScreen {
 
     // Check win-scenario.
     if (this.player.worldX > this.endX) {
-      console.log("win");
       this.attempts = 1;
+      this.levelMusic.stop();
       return 2;
     }
 
@@ -154,7 +160,7 @@ class GameScreen {
   }
 
   spawnLevel(level, offsetX, offsetY) {
-    level.loadPixels();
+    level.layout.loadPixels();
     
     let r = -1;
     let g = -1;
@@ -163,13 +169,13 @@ class GameScreen {
     let x = -1;
     let y = -1;
 
-    for (let i = 0; i < level.pixels.length; i += 4) {
-      r = level.pixels[i];
-      g = level.pixels[i + 1];
-      b = level.pixels[i + 2];
-      a = level.pixels[i + 3];
-      x = (i/4) % level.width;
-      y = level.height - floor(i/4 / level.width);
+    for (let i = 0; i < level.layout.pixels.length; i += 4) {
+      r = level.layout.pixels[i];
+      g = level.layout.pixels[i + 1];
+      b = level.layout.pixels[i + 2];
+      a = level.layout.pixels[i + 3];
+      x = (i/4) % level.layout.width;
+      y = level.layout.height - floor(i/4 / level.layout.width);
 
       if (a == 255) {
         if (r == 255 && g == 0 && b == 0) {
@@ -189,7 +195,9 @@ class GameScreen {
       //console.log('Color: ' + level.pixels[i] + ',' + level.pixels[i + 1] + ',' + level.pixels[i + 2] + ',' + level.pixels[i + 3] + ' | Position: ' + x + ',' + y);
     }
 
-    this.endX = offsetX + level.width * 50 + 400;
+    this.endX = offsetX + level.layout.width * 50 + 400;
     console.log(this.endX);
+
+    this.levelMusic = level.music;
   }
 }
