@@ -25,6 +25,8 @@ function setup() {
 
 function draw() {
   background(225);
+
+  noSmooth();
   
   if (currentScreen != newScreen) {
     currentScreen = newScreen;
