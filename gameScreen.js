@@ -142,6 +142,7 @@ class GameScreen {
     textSize(16);
     textFont(this.font);
     text('Attempt ' + this.attempts, 16, 22);
+    text('FPS ' + round(frameRate()), 536, 22);
     
     return 0;
   }
