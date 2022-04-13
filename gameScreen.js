@@ -15,10 +15,10 @@ class GameScreen {
   
   preload() {
     //this.levels.push(loadImage('Images/Level1.png'));
-    //this.levels.push(loadImage('Images/Level2.png'));
+    this.levels.push(loadImage('Images/Level2.png'));
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
-    this.levels.push(loadImage('Images/LevelJumpOrbExample.png'));
+    //this.levels.push(loadImage('Images/LevelJumpOrbExample.png'));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.player.preload();
     this.background.preload();
