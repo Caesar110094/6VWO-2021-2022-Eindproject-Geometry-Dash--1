@@ -9,6 +9,8 @@ class GameScreen {
     this.levels = [];
     this.background = new Background();
     this.endX = -1;
+    this.attempts = 1;
+    this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
   }
   
   preload() {
@@ -21,7 +23,7 @@ class GameScreen {
     this.player.preload();
     this.background.preload();
   }
-
+  
   setup() {
     this.spikes = [];
     this.blocks = [];
@@ -74,6 +76,7 @@ class GameScreen {
     // Check blok-speler horizontale collision.
     for (let i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].checkCollision(this.player)) {
+        this.attempts++;
         return 1;
       }
     }
@@ -82,21 +85,27 @@ class GameScreen {
     
     // Check block-speler verticale collision.
     this.player.ground = this.player.trueGround;
+    let gameOver = false;
     this.blocks.forEach(block =>
     {
       if (block.checkCollision(this.player)) {
         if (this.player.y > block.y) {
-          return 1;
+          gameOver = true;
         }
         else {
           this.player.ground = block.y;
         }
       }
     });
+    if (gameOver) {
+      this.attempts++;
+      return 1;
+    }
 
     // Check spike-speler collision.
     for (let i = 0; i < this.spikes.length; i++) {
       if (this.spikes[i].checkCollision(this.player)) {
+        this.attempts++;
         return 1;
       }
     }
@@ -121,9 +130,18 @@ class GameScreen {
 
     // Check win-scenario.
     if (this.player.worldX > this.endX) {
-      console.log("win")
+      console.log("win");
+      this.attempts = 1;
       return 2;
     }
+
+    // UI
+    fill('black');
+    rect(0, 0, width, 30);
+    fill('white');
+    textSize(16);
+    textFont(this.font);
+    text('Attempt ' + this.attempts, 16, 22);
     
     return 0;
   }
