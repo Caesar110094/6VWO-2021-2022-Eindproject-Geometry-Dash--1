@@ -38,7 +38,16 @@ class GameScreen {
     this.levelMusic.play();
     
     // Neem aantal pogingen dat speler heeft begaan.
+    this.attempts = getItem("Attempts");
+    if (this.attempts == null) {
+      this.attempts = 1;
+    }
+    
+    // Neem aantal deaths dat speler heeft begaan
     this.deathCount = getItem("Deaths");
+    if (this.deathCount == null) {
+      this.deathCount = 0;
+    }
   }
   
   draw() {
@@ -155,23 +164,26 @@ class GameScreen {
   }
 
   onWin() {
-    this.attempts = 1;
     this.levelMusic.stop();
 
-    // Opslaan van aantal pogingen = 1.
-    this.attempts = this.attempts + 1;
+    // Opslaan van aantal pogingen.
+    this.attempts = 1;
     console.log(this.attempts);
-    storeItem('Deaths', this.deathCount);
+    storeItem('Attempts', this.attempts);
   }
   
   onDeath() {
-    this.attempts++;
     this.levelMusic.stop();
 
-    // Opslaan van hoeveel pogingen.
+    // Opslaan van aantal doden.
     this.deathCount = this.deathCount + 1;
     console.log(this.deathCount);
     storeItem('Deaths', this.deathCount);
+
+    // Opslaan van aantal pogingen.
+    this.attempts = this.attempts + 1;
+    console.log(this.attempts);
+    storeItem('Attempts', this.attempts);
   }
 
   keyPressed() {
