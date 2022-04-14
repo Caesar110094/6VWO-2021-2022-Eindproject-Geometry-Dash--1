@@ -14,7 +14,7 @@ class GameScreen {
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
     this.levelMusic = null;
     this.stageClearMusic = null;
-    this.deathSoundMusic = null;
+    this.osc = new p5.Oscillator(300);
   }
   
   preload() {
@@ -25,7 +25,6 @@ class GameScreen {
     this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.stageClearMusic = loadSound('Music/StageClear.mp3');
-    this.deathSoundMusic = loadSound('Music/DeathSound.mp3');
     this.player.preload();
     this.background.preload();
   }
@@ -179,7 +178,7 @@ class GameScreen {
   
   onDeath() {
     this.levelMusic.stop();
-    this.deathSoundMusic.play();
+    this.playDeathSound();
 
     // Opslaan van aantal doden.
     this.deathCount = this.deathCount + 1;
@@ -239,4 +238,19 @@ class GameScreen {
 
     this.levelMusic = level.music;
   }
+
+  playDeathSound() {
+    this.osc.start();
+    this.osc.amp(0.5);
+    this.osc.freq(900);
+    this.osc.freq(20, 0.2);
+  }
+
+//   playJumpSound() {
+//     this.osc.start();
+//     this.osc.amp(0.5);
+//     this.osc.freq(600);
+//     this.osc.freq(100, 0.01);
+//     this.osc.amp(0, 0.1, 0.1);
+// }
 }
