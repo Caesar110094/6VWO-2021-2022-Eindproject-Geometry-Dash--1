@@ -12,6 +12,7 @@ class Background {
   preload() {
     this.backgroundImage = loadImage('Pictures/Layers/BackgroundTinted.png');
     this.foregroundImage = loadImage('Pictures/Layers/ForegroundFloor.png');
+    //this.backgroundWinImage = loadImage('Pictures/Layers/WinBackground.png');
   }
 
   draw(camera) {
