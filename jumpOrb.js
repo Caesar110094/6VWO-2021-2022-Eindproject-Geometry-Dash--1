@@ -16,6 +16,7 @@ class JumpOrb {
     
     this.x -= this.vx;
   }
+    
 
   checkCollision(player) {
     if (player.x < this.x + this.w &&

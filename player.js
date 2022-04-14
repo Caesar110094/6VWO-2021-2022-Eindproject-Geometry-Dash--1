@@ -115,9 +115,11 @@ class Player {
     if (keyIsDown(32) && !this.keyWasDown) {
       if (this.y + this.h >= this.ground) {
         this.jump();
+        this.playGroundJumpSound();
       }
       else if (this.canJumpOnJumpOrb && !this.hasJumpedOnJumpOrb) {
         this.jump();
+        this.playJumpOrbSound();
         this.hasJumpedOnJumpOrb = true;
       }
 
@@ -128,7 +130,7 @@ class Player {
     }
   }
 
-  playJumpSound() {
+  playGroundJumpSound() {
     this.osc.start();
     this.osc.amp(0.3);
     this.osc.freq(100);
@@ -136,9 +138,16 @@ class Player {
     this.osc.amp(0, 0.2, 0.1);
   }
 
+  playJumpOrbSound(){
+    this.osc.start();
+    this.osc.amp(0.2);
+    this.osc.freq(400);
+    this.osc.freq(550, 0.1);
+    this.osc.amp(0, 0.4, 0.1);
+  }
+  
   jump() {
     this.vy = -10;
     this.playAnimation(1);
-    this.playJumpSound();
   }
 }
