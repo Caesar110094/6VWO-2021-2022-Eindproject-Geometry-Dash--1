@@ -22,7 +22,8 @@ class GameScreen {
     //this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
-    this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
+    this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
+    //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.stageClearMusic = loadSound('Music/StageClear.mp3');
     this.player.preload();
@@ -135,6 +136,7 @@ class GameScreen {
       if (this.jumpPads[i].checkCollision(this.player)) {
         this.player.vy = -15;
         this.player.y = this.jumpPads[i].y + this.jumpPads[i].h - this.jumpPads[i].collisionHeight - this.player.h;
+        break;
       }
     }
 
