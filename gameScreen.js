@@ -37,7 +37,8 @@ class GameScreen {
 
     this.spawnLevel(this.levels[0], 500, 380);
     this.player.setup();
-    
+
+    this.levelMusic.setVolume(0.3);
     this.levelMusic.play();
     
     // Neem aantal pogingen dat speler heeft begaan.
@@ -245,12 +246,4 @@ class GameScreen {
     this.osc.freq(900);
     this.osc.freq(20, 0.2);
   }
-
-//   playJumpSound() {
-//     this.osc.start();
-//     this.osc.amp(0.5);
-//     this.osc.freq(600);
-//     this.osc.freq(100, 0.01);
-//     this.osc.amp(0, 0.1, 0.1);
-// }
 }

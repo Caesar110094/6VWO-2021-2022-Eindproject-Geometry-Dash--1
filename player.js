@@ -30,8 +30,9 @@ class Player {
     this.currentTimer = 0;
 
     this.keyWasDown = false;
-  }
 
+    this.osc = new p5.Oscillator(300);
+  }
 
   // 0 = Foreward
   // 1 = Jump
@@ -127,8 +128,17 @@ class Player {
     }
   }
 
+  playJumpSound() {
+    this.osc.start();
+    this.osc.amp(0.3);
+    this.osc.freq(100);
+    this.osc.freq(200, 0.01);
+    this.osc.amp(0, 0.2, 0.1);
+  }
+
   jump() {
     this.vy = -10;
     this.playAnimation(1);
+    this.playJumpSound();
   }
 }
