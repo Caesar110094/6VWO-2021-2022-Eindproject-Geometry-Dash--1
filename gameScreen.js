@@ -14,6 +14,7 @@ class GameScreen {
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
     this.levelMusic = null;
     this.stageClearMusic = null;
+    this.deathSoundMusic = null;
   }
   
   preload() {
@@ -24,6 +25,7 @@ class GameScreen {
     this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.stageClearMusic = loadSound('Music/StageClear.mp3');
+    this.deathSoundMusic = loadSound('Music/DeathSound.mp3');
     this.player.preload();
     this.background.preload();
   }
@@ -177,6 +179,7 @@ class GameScreen {
   
   onDeath() {
     this.levelMusic.stop();
+    this.deathSoundMusic.play();
 
     // Opslaan van aantal doden.
     this.deathCount = this.deathCount + 1;
