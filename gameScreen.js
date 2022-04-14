@@ -10,6 +10,7 @@ class GameScreen {
     this.background = new Background();
     this.endX = -1;
     this.attempts = 1;
+    this.deathCount = 0;
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
     this.levelMusic = null;
   }
@@ -35,6 +36,9 @@ class GameScreen {
     this.player.setup();
     
     this.levelMusic.play();
+    
+    // Neem aantal pogingen dat speler heeft begaan.
+    this.deathCount = getItem("Deaths");
   }
   
   draw() {
@@ -79,8 +83,7 @@ class GameScreen {
     // Check blok-speler horizontale collision.
     for (let i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].checkCollision(this.player)) {
-        this.attempts++;
-        this.levelMusic.stop();
+        this.onDeath();
         return 1;
       }
     }
@@ -102,16 +105,14 @@ class GameScreen {
       }
     });
     if (gameOver) {
-      this.attempts++;
-      this.levelMusic.stop();
+      this.onDeath();
       return 1;
     }
 
     // Check spike-speler collision.
     for (let i = 0; i < this.spikes.length; i++) {
       if (this.spikes[i].checkCollision(this.player)) {
-        this.attempts++;
-        this.levelMusic.stop();
+        this.onDeath();
         return 1;
       }
     }
@@ -136,8 +137,7 @@ class GameScreen {
 
     // Check win-scenario.
     if (this.player.worldX > this.endX) {
-      this.attempts = 1;
-      this.levelMusic.stop();
+      this.onWin();
       return 2;
     }
 
@@ -149,8 +149,29 @@ class GameScreen {
     textFont(this.font);
     text('Attempt ' + this.attempts, 16, 22);
     text('FPS ' + round(frameRate()), 536, 22);
+    text('Deaths ' + this.deathCount, 150, 22);
     
     return 0;
+  }
+
+  onWin() {
+    this.attempts = 1;
+    this.levelMusic.stop();
+
+    // Opslaan van aantal pogingen = 1.
+    this.attempts = this.attempts + 1;
+    console.log(this.attempts);
+    storeItem('Deaths', this.deathCount);
+  }
+  
+  onDeath() {
+    this.attempts++;
+    this.levelMusic.stop();
+
+    // Opslaan van hoeveel pogingen.
+    this.deathCount = this.deathCount + 1;
+    console.log(this.deathCount);
+    storeItem('Deaths', this.deathCount);
   }
 
   keyPressed() {
