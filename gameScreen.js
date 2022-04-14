@@ -13,15 +13,17 @@ class GameScreen {
     this.deathCount = 0;
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
     this.levelMusic = null;
+    this.stageClearMusic = null;
   }
   
   preload() {
     //this.levels.push(loadImage('Images/Level1.png'));
-    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3')));
+    //this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
-    //this.levels.push(loadImage('Images/LevelJumpOrbExample.png'));
+    this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
+    this.stageClearMusic = loadSound('Music/StageClear.mp3');
     this.player.preload();
     this.background.preload();
   }
@@ -165,6 +167,7 @@ class GameScreen {
 
   onWin() {
     this.levelMusic.stop();
+    this.stageClearMusic.play();
 
     // Opslaan van aantal pogingen.
     this.attempts = 1;
