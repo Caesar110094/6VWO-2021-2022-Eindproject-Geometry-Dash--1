@@ -157,6 +157,7 @@ class GameScreen {
     }
 
     // UI
+    textAlign(LEFT, BASELINE);
     fill('black');
     rect(0, 0, width, 30);
     fill('white');

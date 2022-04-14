@@ -14,6 +14,7 @@ function preload() {
   winScreen = new WinScreen();
 
   gameScreen.preload();
+  winScreen.preload();
   //fg = loadImage("ForegroundFloor.png");
 }
 
