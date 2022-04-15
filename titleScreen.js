@@ -28,6 +28,7 @@ class TitleScreen {
       this.saltyButton.remove();
       this.storiesButton.remove();
       this.XFunkButton.remove();
+      this.GeoButton.remove();
       return 0;
     }
   }
@@ -65,10 +66,12 @@ class TitleScreen {
     this.timesButton.style("font-size", "40px");
     this.timesButton.position(300, 170);
     this.timesButton.mousePressed(() => this.setLevel(3));
-    
-    let input = createButton('Geometry Dash');
-    input.style('font-size', '24px', 'color', '#ffffff');
-    input.position (20, 10);
+
+    this.GeoButton = createButton ('Geometry Dash')
+    this.GeoButton.size(100,50)
+    this.GeoButton.style('background-color', col);
+    this.GeoButton.style("font-size", "20px");
+    this.GeoButton.position(20,10)
 
     return 3;
   }
