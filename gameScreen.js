@@ -47,6 +47,10 @@ loadImage("Pictures/Layers/BackgroundTinted.png")));
     this.jumpOrbs = [];
 
     this.goToMenu = false;
+
+    if (this.levelMusic != null) {
+      this.levelMusic.stop();
+    }
     
     this.levelIndex = this.titleScreen.levelIndex;
     this.spawnLevel(this.levels[this.levelIndex], 500, 380);
@@ -79,6 +83,7 @@ loadImage("Pictures/Layers/BackgroundTinted.png")));
     this.MenuButton.mousePressed(() => {
       this.goToMenu = true;
       this.MenuButton.remove();
+      this.levelMusic.stop();
     });
   }
   
@@ -272,7 +277,6 @@ loadImage("Pictures/Layers/BackgroundTinted.png")));
     }
 
     this.endX = offsetX + level.layout.width * 50 + 50;
-    console.log(this.endX);
 
     this.levelMusic = level.music;
 
