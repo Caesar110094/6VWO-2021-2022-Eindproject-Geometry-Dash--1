@@ -29,6 +29,9 @@ class Player {
     this.currentIndex = 0;
     this.currentTimer = 0;
 
+    this.jumpCorrectionLength = 8;
+    this.jumpCorrectionTimer = 0;
+
     this.keyWasDown = false;
 
     this.osc = new p5.Oscillator(300);
@@ -113,17 +116,16 @@ class Player {
 
   input() {
     if (keyIsDown(32) && !this.keyWasDown) {
-      if (this.y + this.h >= this.ground) {
-        this.jump();
-        this.playGroundJumpSound();
-      }
-      else if (this.canJumpOnJumpOrb && !this.hasJumpedOnJumpOrb) {
-        this.jump();
-        this.playJumpOrbSound();
-        this.hasJumpedOnJumpOrb = true;
-      }
+      this.handleJump();
 
+      this.jumpCorrectionTimer = this.jumpCorrectionLength;
+      
       this.keyWasDown = true;
+    }
+    else if (this.jumpCorrectionTimer > 0) {
+      this.jumpCorrectionTimer -= 1;
+
+      this.handleJump();
     }
     else if (!keyIsDown(32)) {
       this.keyWasDown = false;
@@ -144,6 +146,18 @@ class Player {
     this.osc.freq(400);
     this.osc.freq(550, 0.1);
     this.osc.amp(0, 0.4, 0.1);
+  }
+
+  handleJump() {
+    if (this.y + this.h >= this.ground) {
+      this.jump();
+      this.playGroundJumpSound();
+    }
+    else if (this.canJumpOnJumpOrb && !this.hasJumpedOnJumpOrb) {
+      this.jump();
+      this.playJumpOrbSound();
+      this.hasJumpedOnJumpOrb = true;
+    }
   }
   
   jump() {
