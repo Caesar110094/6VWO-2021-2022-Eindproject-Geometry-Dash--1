@@ -1,5 +1,5 @@
 class GameScreen {
-  constructor() {
+  constructor(titleScreen) {
     this.player = new Player(100, 200);
     this.camera = new Camera();
     this.melodyTool = new MelodyTool();
@@ -16,6 +16,8 @@ class GameScreen {
     this.levelMusic = null;
     this.stageClearMusic = null;
     this.osc = new p5.Oscillator(300);
+    this.levelIndex = 0;
+    this.titleScreen = titleScreen;
   }
   
   preload() {
@@ -26,6 +28,10 @@ class GameScreen {
     //this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.stageClearMusic = loadSound('Music/StageClear.mp3');
     this.player.preload();
@@ -38,7 +44,8 @@ class GameScreen {
     this.jumpPads = [];
     this.jumpOrbs = [];
 
-    this.spawnLevel(this.levels[0], 500, 380);
+    this.levelIndex = this.titleScreen.levelIndex;
+    this.spawnLevel(this.levels[this.levelIndex], 500, 380);
     this.player.setup();
 
     this.levelMusic.setVolume(0.3);

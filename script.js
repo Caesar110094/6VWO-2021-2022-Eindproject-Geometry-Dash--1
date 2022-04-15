@@ -10,10 +10,10 @@ var currentScreen = 3;
 var newScreen = 3;
 
 function preload() {
-  gameScreen = new GameScreen();
+  titleScreen = new TitleScreen();
+  gameScreen = new GameScreen(titleScreen);
   deadScreen = new DeadScreen();
   winScreen = new WinScreen();
-  titleScreen = new TitleScreen();
 
   gameScreen.preload();
   winScreen.preload();
