@@ -10,10 +10,24 @@ class TitleScreen {
     this.levelIndex = 0;
     this.playGame = false;
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
+    
+    this.playerAnimation = [];
+    this.playerAnimationFrameLength = 5;
+    this.playerAnimationIndex = 0;
+    this.playerAnimationFrameTimer = 0;
   }
   
   preload() {
     this.backgroundImage = loadImage("Pictures/Layers/Background.png");
+
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 1&5.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 2&4.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 3.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 2&4.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 1&5.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 6.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 7.png'));
+    this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 8.png'));
     
     return 3;
   }
@@ -22,7 +36,19 @@ class TitleScreen {
     image(this.backgroundImage, 0, 0, (673/248) * height, height);
     fill('black');
     rect(0, 0, width, 40);
+    
+    this.playerAnimationFrameTimer -= 1;
+    if (this.playerAnimationFrameTimer <= 0) {
+      this.playerAnimationFrameTimer = this.playerAnimationFrameLength;
+      
+      this.playerAnimationIndex++;
+      if (this.playerAnimationIndex >= this.playerAnimation.length) {
+        this.playerAnimationIndex = 0;
+      }
+    }
 
+    image(this.playerAnimation[this.playerAnimationIndex], 400, 200, 100, 100);
+    
     if (this.playGame == false) {
       return 3;
     }
@@ -32,7 +58,7 @@ class TitleScreen {
       this.storiesButton.remove();
       this.XFunkButton.remove();
       this.GeoButton.remove();
-      console.log('Hello');
+      
       this.playGame = false;
       return 0;
     }
