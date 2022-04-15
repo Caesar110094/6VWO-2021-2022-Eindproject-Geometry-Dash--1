@@ -27,9 +27,9 @@ class GameScreen {
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
     //this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
-    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
-    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
-    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level1.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');

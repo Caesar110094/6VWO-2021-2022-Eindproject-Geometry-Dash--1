@@ -2,7 +2,10 @@ class TitleScreen {
   constructor() {
     this.bg;
     this.y = 0;
-    this.button;
+    this.saltyButton;
+    this.storiesButton;
+    this.XFunkButton;
+    this.timesButton;
     this.backgroundImage;
     this.levelIndex = 0;
     this.playGame = false;
@@ -21,6 +24,10 @@ class TitleScreen {
       return 3;
     }
     else {
+      this.timesButton.remove();
+      this.saltyButton.remove();
+      this.storiesButton.remove();
+      this.XFunkButton.remove();
       return 0;
     }
   }
@@ -30,34 +37,34 @@ class TitleScreen {
   }
 
   setup() {
-    this.button = createButton('Level 1');
-    this.button.size(200, 50);
+    this.saltyButton = createButton('Salty');
+    this.saltyButton.size(200, 50);
     let col = color(200, 200, 300);
-    this.button.style('background-color', col);
-    this.button.style("font-size", "40px");
-    this.button.position(30, 70);
-    this.button.mousePressed(() => this.setLevel(0));
+    this.saltyButton.style('background-color', col);
+    this.saltyButton.style("font-size", "40px");
+    this.saltyButton.position(30, 70);
+    this.saltyButton.mousePressed(() => this.setLevel(0));
     
-    this.button = createButton('Level 2');
-    this.button.size(200, 50);
-    this.button.style('background-color', col);
-    this.button.style("font-size", "40px");
-    this.button.position(300, 70);
-    this.button.mousePressed(() => this.setLevel(1));
+    this.storiesButton = createButton('Stories');
+    this.storiesButton.size(200, 50);
+    this.storiesButton.style('background-color', col);
+    this.storiesButton.style("font-size", "40px");
+    this.storiesButton.position(300, 70);
+    this.storiesButton.mousePressed(() => this.setLevel(1));
     
-    this.button = createButton('Level 3');
-    this.button.size(200, 50);
-    this.button.style('background-color', col);
-    this.button.style("font-size", "40px");
-    this.button.position(30, 170);
-    this.button.mousePressed(() => this.setLevel(2));
+    this.XFunkButton = createButton('XFunk');
+    this.XFunkButton.size(200, 50);
+    this.XFunkButton.style('background-color', col);
+    this.XFunkButton.style("font-size", "40px");
+    this.XFunkButton.position(30, 170);
+    this.XFunkButton.mousePressed(() => this.setLevel(2));
     
-    this.button = createButton('Level 4');
-    this.button.size(200, 50);
-    this.button.style('background-color', col);
-    this.button.style("font-size", "40px");
-    this.button.position(300, 170);
-    this.button.mousePressed(() => this.setLevel(3));
+    this.timesButton = createButton('Times');
+    this.timesButton.size(200, 50);
+    this.timesButton.style('background-color', col);
+    this.timesButton.style("font-size", "40px");
+    this.timesButton.position(300, 170);
+    this.timesButton.mousePressed(() => this.setLevel(3));
     
     let input = createButton('Geometry Dash');
     input.style('font-size', '24px', 'color', '#ffffff');
@@ -67,7 +74,6 @@ class TitleScreen {
   }
 
   setLevel(levelIndex) {
-    console.log(101);
     this.levelIndex = levelIndex;
     this.playGame = true;
   }
