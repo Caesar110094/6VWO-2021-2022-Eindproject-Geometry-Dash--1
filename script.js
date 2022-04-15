@@ -38,7 +38,6 @@ function preload() {
 function setup() {
   createCanvas(600, 400);
 
-  gameScreen.setup();
   titleScreen.setup();
 }
 
@@ -52,7 +51,6 @@ function draw() {
 
     if (currentScreen == 0) {
       gameScreen.setup();
-      gameScreen.start();
     }
     else if (currentScreen == 3) {
       titleScreen.setup();

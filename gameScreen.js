@@ -28,10 +28,10 @@ class GameScreen {
     //this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.levels.push(new Level(loadImage('Images/Level1.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
-    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
-    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), 
-loadImage("Pictures/Layers/BackgroundTinted.png")));
-    this.levels.push(new Level(loadImage('Images/Level4.png'), loadSound('Music/LevelMusic.mp3'))), 
+    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/Level2_Music.mp3'), loadImage("Pictures/Layers/GreenBackground.png")));
+    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/Level3_Music.mp3'), 
+loadImage("Pictures/Layers/PurpleBackground.png")));
+    this.levels.push(new Level(loadImage('Images/Level4.png'), loadSound('Music/Level4_Music.mp3'),loadImage("Pictures/Layers/RedBackground.png"))), 
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
@@ -68,9 +68,7 @@ loadImage("Pictures/Layers/BackgroundTinted.png")));
     if (this.playerData.deathCount == null) {
       this.playerData.deathCount = 0;
     }
-  }
 
-  start() {
     // create Button
     this.MenuButton = createButton('Menu');
     this.MenuButton.size(75,25)

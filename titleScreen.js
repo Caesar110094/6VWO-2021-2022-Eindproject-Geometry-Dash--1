@@ -17,6 +17,8 @@ class TitleScreen {
     this.playerAnimationIndex = 0;
     this.playerAnimationFrameTimer = 0;
 
+    this.music = loadSound("Music/MenuMusic.mp3");
+    
     this.playerData = playerData;
   }
   
@@ -167,11 +169,15 @@ class TitleScreen {
     this.GeoButton.style("font-family", "ArcadeClassic");
     this.GeoButton.position(-30,5);
 
+    this.music.setVolume(0.3);
+    this.music.play();
+    
     return 3;
   }
 
   setLevel(levelIndex) {
     this.levelIndex = levelIndex;
     this.playGame = true;
+    this.music.stop();
   }
 }
