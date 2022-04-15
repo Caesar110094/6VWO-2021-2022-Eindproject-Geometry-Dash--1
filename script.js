@@ -38,8 +38,10 @@ function draw() {
 
     if (currentScreen == 0) {
       gameScreen.setup();
+      gameScreen.start();
     }
-    else {
+    else if (currentScreen == 3) {
+      titleScreen.setup();
     }
   }
 

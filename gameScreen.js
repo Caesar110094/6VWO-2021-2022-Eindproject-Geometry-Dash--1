@@ -18,6 +18,7 @@ class GameScreen {
     this.osc = new p5.Oscillator(300);
     this.levelIndex = 0;
     this.titleScreen = titleScreen;
+    this.goToMenu = false;
   }
   
   preload() {
@@ -27,9 +28,9 @@ class GameScreen {
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
     //this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
     //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
-    this.levels.push(new Level(loadImage('Images/Level1.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
-    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
-    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
+    this.levels.push(new Level(loadImage('Images/Level1.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
+    this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
+    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
@@ -44,6 +45,8 @@ class GameScreen {
     this.jumpPads = [];
     this.jumpOrbs = [];
 
+    this.goToMenu = false;
+    
     this.levelIndex = this.titleScreen.levelIndex;
     this.spawnLevel(this.levels[this.levelIndex], 500, 380);
     this.player.setup();
@@ -62,6 +65,19 @@ class GameScreen {
     if (this.deathCount == null) {
       this.deathCount = 0;
     }
+  }
+
+  start() {
+    // create Button
+    this.MenuButton = createButton ('Menu')
+    this.MenuButton.size(100,50)
+    this.MenuButton.style('background-color', color(200, 200, 300));
+    this.MenuButton.style("font-size", "18px");
+    this.MenuButton.position(470,10);
+    this.MenuButton.mousePressed(() => {
+      this.goToMenu = true;
+      this.MenuButton.remove();
+    });
   }
   
   draw() {
@@ -176,6 +192,10 @@ class GameScreen {
     text('FPS ' + round(frameRate()), 536, 22);
     text('Deaths ' + this.deathCount, 150, 22);
 
+    if (this.goToMenu) {
+      return 3;
+    }
+    
     this.melodyTool.update(this.player);
     
     return 0;

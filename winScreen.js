@@ -14,7 +14,7 @@ class WinScreen {
     fill('white');
     textSize(16);
     textAlign(CENTER, CENTER);
-    text("Jij hebt gewonnen! Druk op SPACE", 0, height - 32, width, 32);
+    text("Je hebt gewonnen! Druk op SPACE", 0, height - 32, width, 32);
 
     return 2;
   }

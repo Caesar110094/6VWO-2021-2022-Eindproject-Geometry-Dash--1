@@ -10,7 +10,7 @@ class TitleScreen {
     this.levelIndex = 0;
     this.playGame = false;
   }
-
+  
   preload() {
     this.backgroundImage = loadImage("Pictures/Layers/Background.png");
     
@@ -29,6 +29,8 @@ class TitleScreen {
       this.storiesButton.remove();
       this.XFunkButton.remove();
       this.GeoButton.remove();
+      console.log('Hello');
+      this.playGame = false;
       return 0;
     }
   }
@@ -71,7 +73,7 @@ class TitleScreen {
     this.GeoButton.size(100,50)
     this.GeoButton.style('background-color', col);
     this.GeoButton.style("font-size", "20px");
-    this.GeoButton.position(20,10)
+    this.GeoButton.position(20,10);
 
     return 3;
   }
