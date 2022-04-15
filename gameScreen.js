@@ -69,11 +69,13 @@ class GameScreen {
 
   start() {
     // create Button
-    this.MenuButton = createButton ('Menu')
-    this.MenuButton.size(100,50)
-    this.MenuButton.style('background-color', color(200, 200, 300));
-    this.MenuButton.style("font-size", "18px");
-    this.MenuButton.position(470,10);
+    this.MenuButton = createButton('Menu');
+    this.MenuButton.size(75,25)
+    this.MenuButton.style('background-color', color(200, 200, 300, 0));
+    this.MenuButton.style("font-size", "16");
+    this.MenuButton.style("color", "white");
+    this.MenuButton.style("border", "black");
+    this.MenuButton.position(460,12);
     this.MenuButton.mousePressed(() => {
       this.goToMenu = true;
       this.MenuButton.remove();
@@ -211,6 +213,8 @@ class GameScreen {
     storeItem('Attempts', this.attempts);
 
     this.melodyTool.print();
+
+    this.MenuButton.remove();
   }
   
   onDeath() {
@@ -226,6 +230,8 @@ class GameScreen {
     this.attempts = this.attempts + 1;
     console.log(this.attempts);
     storeItem('Attempts', this.attempts);
+
+    this.MenuButton.remove();
   }
 
   spawnLevel(level, offsetX, offsetY) {
