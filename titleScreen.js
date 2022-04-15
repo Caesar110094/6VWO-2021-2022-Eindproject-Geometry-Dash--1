@@ -48,6 +48,12 @@ class TitleScreen {
     }
 
     image(this.playerAnimation[this.playerAnimationIndex], 400, 200, 100, 100);
+
+    textAlign(LEFT, BASELINE);
+    fill('white');
+    textSize(16);
+    textFont(this.font);
+    text("Door    Joseph      Caesar      Christiaan", 290, 22);
     
     if (this.playGame == false) {
       return 3;
@@ -112,7 +118,7 @@ class TitleScreen {
     this.timesButton.position(30, 190);
     this.timesButton.mousePressed(() => this.setLevel(3));
 
-    this.GeoButton = createButton ('Slime Dash')
+    this.GeoButton = createButton('Slime Dash')
     this.GeoButton.size(300,50)
     this.GeoButton.style('background-color', color(200, 200, 300, 0));
     this.GeoButton.style('border', 'none');
