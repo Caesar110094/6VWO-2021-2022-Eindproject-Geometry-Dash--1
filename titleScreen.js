@@ -1,11 +1,12 @@
 class TitleScreen {
-  constructor() {
+  constructor(playerData) {
     this.bg;
     this.y = 0;
     this.saltyButton;
     this.storiesButton;
     this.XFunkButton;
     this.timesButton;
+    this.highTrouble;
     this.backgroundImage;
     this.levelIndex = 0;
     this.playGame = false;
@@ -15,6 +16,8 @@ class TitleScreen {
     this.playerAnimationFrameLength = 5;
     this.playerAnimationIndex = 0;
     this.playerAnimationFrameTimer = 0;
+
+    this.playerData = playerData;
   }
   
   preload() {
@@ -63,6 +66,7 @@ class TitleScreen {
       this.saltyButton.remove();
       this.storiesButton.remove();
       this.XFunkButton.remove();
+      this.highTrouble.remove();
       this.GeoButton.remove();
       
       this.playGame = false;
@@ -77,13 +81,19 @@ class TitleScreen {
   setup() {
     let col = 'black';
     let textColor = color(255, 255, 255);
+    let finishedTextColor = color(150, 255, 150);
     
     this.saltyButton = createButton('Salty');
     this.saltyButton.size(200, 30);
     this.saltyButton.style('background-color', col);
     this.saltyButton.style("font-size", "30px");
     this.saltyButton.style("border", "none");
-    this.saltyButton.style("color", textColor);
+    if (this.playerData.levelsFinished.includes(0)) {
+      this.saltyButton.style("color", finishedTextColor);
+    }
+    else {
+      this.saltyButton.style("color", textColor);
+    }
     this.saltyButton.style("font-family", "ArcadeClassic");
     this.saltyButton.position(30, 70);
     this.saltyButton.mousePressed(() => this.setLevel(0));
@@ -93,7 +103,12 @@ class TitleScreen {
     this.storiesButton.style('background-color', col);
     this.storiesButton.style("font-size", "30px");
     this.storiesButton.style("border", "none");
-    this.storiesButton.style("color", textColor);
+    if (this.playerData.levelsFinished.includes(1)) {
+      this.storiesButton.style("color", finishedTextColor);
+    }
+    else {
+      this.storiesButton.style("color", textColor);
+    }
     this.storiesButton.style("font-family", "ArcadeClassic");
     this.storiesButton.position(30, 110);
     this.storiesButton.mousePressed(() => this.setLevel(1));
@@ -103,21 +118,46 @@ class TitleScreen {
     this.XFunkButton.style('background-color', col);
     this.XFunkButton.style("font-size", "30px");
     this.XFunkButton.style("border", "none");
-    this.XFunkButton.style("color", textColor);
+    if (this.playerData.levelsFinished.includes(2)) {
+      this.XFunkButton.style("color", finishedTextColor);
+    }
+    else {
+      this.XFunkButton.style("color", textColor);
+    }
     this.XFunkButton.style("font-family", "ArcadeClassic");
     this.XFunkButton.position(30, 150);
     this.XFunkButton.mousePressed(() => this.setLevel(2));
+
+    this.highTrouble = createButton('High Trouble');
+    this.highTrouble.size(200, 30);
+    this.highTrouble.style('background-color', col);
+    this.highTrouble.style("font-size", "30px");
+    this.highTrouble.style("border", "none");
+    if (this.playerData.levelsFinished.includes(3)) {
+      this.highTrouble.style("color", finishedTextColor);
+    }
+    else {
+      this.highTrouble.style("color", textColor);
+    }
+    this.highTrouble.style("font-family", "ArcadeClassic");
+    this.highTrouble.position(30, 190);
+    this.highTrouble.mousePressed(() => this.setLevel(3));
     
     this.timesButton = createButton('Times');
     this.timesButton.size(200, 30);
     this.timesButton.style('background-color', col);
     this.timesButton.style("font-size", "30px");
     this.timesButton.style("border", "none");
-    this.timesButton.style("color", textColor);
+    if (this.playerData.levelsFinished.includes(4)) {
+      this.timesButton.style("color", finishedTextColor);
+    }
+    else {
+      this.timesButton.style("color", textColor);
+    }
     this.timesButton.style("font-family", "ArcadeClassic");
-    this.timesButton.position(30, 190);
-    this.timesButton.mousePressed(() => this.setLevel(3));
-
+    this.timesButton.position(30, 230);
+    this.timesButton.mousePressed(() => this.setLevel(4));
+    
     this.GeoButton = createButton('Slime Dash')
     this.GeoButton.size(300,50)
     this.GeoButton.style('background-color', color(200, 200, 300, 0));

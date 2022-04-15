@@ -1,4 +1,5 @@
 var gameScreen, deadScreen, winScreen, titleScreen;
+var playerData;
 
 /*
 0 = GameScreen
@@ -10,8 +11,21 @@ var currentScreen = 3;
 var newScreen = 3;
 
 function preload() {
-  titleScreen = new TitleScreen();
-  gameScreen = new GameScreen(titleScreen);
+  playerData = getItem("Player");
+  if (playerData == null) {
+    playerData = new PlayerData();
+  }
+  else {
+    if (playerData.levelsAttempts == null) {
+      playerData.levelsAttempts.push(-1);
+    }
+    if (playerData.levelsFinished == null) {
+      playerData.levelsFinished.push(-1);
+    }
+  }
+  
+  titleScreen = new TitleScreen(playerData);
+  gameScreen = new GameScreen(titleScreen, playerData);
   deadScreen = new DeadScreen();
   winScreen = new WinScreen();
 
@@ -71,5 +85,10 @@ function keyPressed() {
   }
   else {
     newScreen = titleScreen.keyPressed();
+  }
+
+  if (keyCode == 82) {
+    removeItem("Player");
+    console.log(101);
   }
 }

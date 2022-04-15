@@ -1,5 +1,5 @@
 class GameScreen {
-  constructor(titleScreen) {
+  constructor(titleScreen, playerData) {
     this.player = new Player(100, 200);
     this.camera = new Camera();
     this.melodyTool = new MelodyTool();
@@ -10,8 +10,6 @@ class GameScreen {
     this.levels = [];
     this.background = new Background();
     this.endX = -1;
-    this.attempts = 1;
-    this.deathCount = 0;
     this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
     this.levelMusic = null;
     this.stageClearMusic = null;
@@ -19,6 +17,7 @@ class GameScreen {
     this.levelIndex = 0;
     this.titleScreen = titleScreen;
     this.goToMenu = false;
+    this.playerData = playerData;
   }
   
   preload() {
@@ -30,7 +29,9 @@ class GameScreen {
     //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
     this.levels.push(new Level(loadImage('Images/Level1.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
     this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
-    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), loadImage("Pictures/Layers/BackgroundTinted.png")));
+    this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/LevelMusic.mp3'), 
+loadImage("Pictures/Layers/BackgroundTinted.png")));
+    this.levels.push(new Level(loadImage('Images/Level4.png'), loadSound('Music/LevelMusic.mp3'))), 
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
@@ -55,15 +56,13 @@ class GameScreen {
     this.levelMusic.play();
     
     // Neem aantal pogingen dat speler heeft begaan.
-    this.attempts = getItem("Attempts");
-    if (this.attempts == null) {
-      this.attempts = 1;
+    if (this.getAttemptsCount() == null) {
+      this.setAttemptsCount(0);
     }
     
     // Neem aantal deaths dat speler heeft begaan
-    this.deathCount = getItem("Deaths");
-    if (this.deathCount == null) {
-      this.deathCount = 0;
+    if (this.playerData.deathCount == null) {
+      this.playerData.deathCount = 0;
     }
   }
 
@@ -191,9 +190,9 @@ class GameScreen {
     fill('white');
     textSize(16);
     textFont(this.font);
-    text('Attempt ' + this.attempts, 16, 22);
+    text('Attempt ' + this.getAttemptsCount(), 16, 22);
     text('FPS ' + round(frameRate()), 536, 22);
-    text('Deaths ' + this.deathCount, 150, 22);
+    text('Deaths ' + this.playerData.deathCount, 150, 22);
 
     if (this.goToMenu) {
       return 3;
@@ -209,9 +208,12 @@ class GameScreen {
     this.stageClearMusic.play();
 
     // Opslaan van aantal pogingen.
-    this.attempts = 1;
-    console.log(this.attempts);
-    storeItem('Attempts', this.attempts);
+    this.setAttemptsCount(1);
+    if (!this.playerData.levelsFinished.includes(this.levelIndex)) {
+      this.playerData.levelsFinished.push(this.levelIndex);
+    }
+    
+    storeItem('Player', this.playerData);
 
     this.melodyTool.print();
 
@@ -223,14 +225,12 @@ class GameScreen {
     this.playDeathSound();
 
     // Opslaan van aantal doden.
-    this.deathCount = this.deathCount + 1;
-    console.log(this.deathCount);
-    storeItem('Deaths', this.deathCount);
+    this.playerData.deathCount = this.playerData.deathCount + 1;
 
     // Opslaan van aantal pogingen.
-    this.attempts = this.attempts + 1;
-    console.log(this.attempts);
-    storeItem('Attempts', this.attempts);
+    this.setAttemptsCount(this.getAttemptsCount() + 1);
+    
+    storeItem('Player', this.playerData);
 
     this.MenuButton.remove();
   }
@@ -284,5 +284,13 @@ class GameScreen {
     this.osc.amp(0.5);
     this.osc.freq(900);
     this.osc.freq(20, 0.2);
+  }
+
+  getAttemptsCount() {
+    return this.playerData.levelsAttempts[this.levelIndex];
+  }
+
+  setAttemptsCount(newValue) {
+    this.playerData.levelsAttempts[this.levelIndex] = newValue;
   }
 }
