@@ -17,6 +17,7 @@ function preload() {
 
   gameScreen.preload();
   winScreen.preload();
+  titleScreen.preload();
   //fg = loadImage("ForegroundFloor.png");
 }
 
@@ -63,7 +64,10 @@ function keyPressed() {
   else if (currentScreen == 1) {
     newScreen = deadScreen.keyPressed();
   }
-  else {
+  else if (currentScreen == 2) {
     newScreen = winScreen.keyPressed();
+  }
+  else {
+    newScreen = titleScreen.keyPressed();
   }
 }

@@ -3,11 +3,17 @@ class TitleScreen {
     this.bg;
     this.y = 0;
     this.button;
+    this.backgroundImage;
+  }
+
+  preload() {
+    this.backgroundImage = loadImage("Pictures/Layers/Background.png");
+    
+    return 3;
   }
   
-  
   draw() {
-    //text("Druk op [SPACE] verder gaan om te beginnen", 50, 50);
+    image(this.backgroundImage, 0, 0, (673/248) * height, height);
 
     return 3;
   }
@@ -17,6 +23,9 @@ class TitleScreen {
   }
 
   setup() {
+    // image();
+    
+    // https://p5js.org/reference/#/p5/image
     this.button = createButton('Level 1');
     this.button.size(200, 50);
     let col = color(200, 200, 300);
@@ -42,7 +51,6 @@ class TitleScreen {
     this.button.style("font-size", "40px");
     this.button.position(300, 170);
     //this.button.mousePressed(changeBG);
-    this.bg = loadImage('Background.png');
     
     let input = createButton('Geometry Dash');
     input.style('font-size', '24px', 'color', '#ffffff');
@@ -51,7 +59,5 @@ class TitleScreen {
     return 3;
   }
 
-  changeBG() {
     
-  }
 }
