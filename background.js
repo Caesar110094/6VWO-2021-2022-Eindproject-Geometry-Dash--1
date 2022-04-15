@@ -7,14 +7,24 @@ class Background {
     this.w = 400 * (673/248);
     this.backgroundHeight = 400;
     this.foregroundHeight = this.w * (73/673);
+    this.defaultBackgroundImage = null
   }
 
   preload() {
-    this.backgroundImage = loadImage('Pictures/Layers/BackgroundTinted.png');
+    this.backgroundImage = this.defaultBackgroundImage =  loadImage('Pictures/Layers/BackgroundTinted.png');
     this.foregroundImage = loadImage('Pictures/Layers/ForegroundFloor.png');
     //this.backgroundWinImage = loadImage('Pictures/Layers/WinBackground.png');
   }
 
+  loadLevel(level) {
+    if (level.background == null) {
+      this.backgroundImage = this.defaultBackgroundImage;
+    }
+    else {
+      this.backgroundImage = level.background;
+    }
+  }
+  
   draw(camera) {
     image(this.backgroundImage, this.x, -camera.y, this.w, this.backgroundHeight);
     image(this.backgroundImage, this.x + this.w, -camera.y, this.w, this.backgroundHeight);

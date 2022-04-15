@@ -2,6 +2,7 @@ class GameScreen {
   constructor() {
     this.player = new Player(100, 200);
     this.camera = new Camera();
+    this.melodyTool = new MelodyTool();
     this.spikes = [];
     this.blocks = [];
     this.jumpPads = [];
@@ -23,7 +24,8 @@ class GameScreen {
     //this.levels.push(loadImage('Images/Level3.png'));
     //this.levels.push(loadImage('Images/LevelJumpPadExample2.png'));
     //this.levels.push(new Level(loadImage('Images/LevelJumpPadExample2.png'), loadSound('Music/LevelMusic.mp3')));
-    this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
+    //this.levels.push(new Level(loadImage('Images/LevelJumpOrbExample.png'), loadSound('Music/LevelMusic.mp3')));
+    this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');
     this.stageClearMusic = loadSound('Music/StageClear.mp3');
     this.player.preload();
@@ -166,6 +168,8 @@ class GameScreen {
     text('Attempt ' + this.attempts, 16, 22);
     text('FPS ' + round(frameRate()), 536, 22);
     text('Deaths ' + this.deathCount, 150, 22);
+
+    this.melodyTool.update(this.player);
     
     return 0;
   }
@@ -178,6 +182,8 @@ class GameScreen {
     this.attempts = 1;
     console.log(this.attempts);
     storeItem('Attempts', this.attempts);
+
+    this.melodyTool.print();
   }
   
   onDeath() {
@@ -193,12 +199,6 @@ class GameScreen {
     this.attempts = this.attempts + 1;
     console.log(this.attempts);
     storeItem('Attempts', this.attempts);
-  }
-
-  keyPressed() {
-    //this.player.onKeyPressed();
-
-    return 0;
   }
 
   spawnLevel(level, offsetX, offsetY) {
@@ -237,10 +237,12 @@ class GameScreen {
       //console.log('Color: ' + level.pixels[i] + ',' + level.pixels[i + 1] + ',' + level.pixels[i + 2] + ',' + level.pixels[i + 3] + ' | Position: ' + x + ',' + y);
     }
 
-    this.endX = offsetX + level.layout.width * 50 + 400;
+    this.endX = offsetX + level.layout.width * 50 + 50;
     console.log(this.endX);
 
     this.levelMusic = level.music;
+
+    this.background.loadLevel(level);
   }
 
   playDeathSound() {

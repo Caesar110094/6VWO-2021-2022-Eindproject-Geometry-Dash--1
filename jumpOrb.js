@@ -27,7 +27,7 @@
     noStroke();
     //rect(this.x - camera.x, this.y - camera.y, this.w, this.h);
     //circle(this.x - camera.x + this.w / 2, this.y - camera.y + this.h / 2, this.w);
-    image(this.animation[this.currentIndex], this.x - camera.x + this.w / 2, this.y - camera.y + this.h / 2, this.w, this.h);
+    image(this.animation[this.currentIndex], this.x - camera.x, this.y - camera.y, this.w, this.h);
     
     this.x -= this.vx;
 

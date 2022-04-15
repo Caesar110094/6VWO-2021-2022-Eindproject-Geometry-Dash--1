@@ -52,7 +52,7 @@ function draw() {
 
 function keyPressed() {
   if (currentScreen == 0) {
-    newScreen = gameScreen.keyPressed();
+    //newScreen = gameScreen.keyPressed();
   }
   else if (currentScreen == 1) {
     newScreen = deadScreen.keyPressed();
