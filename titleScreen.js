@@ -9,6 +9,7 @@ class TitleScreen {
     this.backgroundImage;
     this.levelIndex = 0;
     this.playGame = false;
+    this.font = loadFont('Fonts/ARCADECLASSIC.TTF');
   }
   
   preload() {
@@ -20,7 +21,7 @@ class TitleScreen {
   draw() {
     image(this.backgroundImage, 0, 0, (673/248) * height, height);
     fill('black');
-    rect(0, 0, width, 30);
+    rect(0, 0, width, 40);
 
     if (this.playGame == false) {
       return 3;
@@ -46,48 +47,53 @@ class TitleScreen {
     let textColor = color(255, 255, 255);
     
     this.saltyButton = createButton('Salty');
-    this.saltyButton.size(200, 50);
+    this.saltyButton.size(200, 30);
     this.saltyButton.style('background-color', col);
-    this.saltyButton.style("font-size", "20");
+    this.saltyButton.style("font-size", "30px");
     this.saltyButton.style("border", "none");
     this.saltyButton.style("color", textColor);
+    this.saltyButton.style("font-family", "ArcadeClassic");
     this.saltyButton.position(30, 70);
     this.saltyButton.mousePressed(() => this.setLevel(0));
     
     this.storiesButton = createButton('Stories');
-    this.storiesButton.size(200, 50);
+    this.storiesButton.size(200, 30);
     this.storiesButton.style('background-color', col);
-    this.storiesButton.style("font-size", "20");
+    this.storiesButton.style("font-size", "30px");
     this.storiesButton.style("border", "none");
     this.storiesButton.style("color", textColor);
-    this.storiesButton.position(300, 70);
+    this.storiesButton.style("font-family", "ArcadeClassic");
+    this.storiesButton.position(30, 110);
     this.storiesButton.mousePressed(() => this.setLevel(1));
     
     this.XFunkButton = createButton('XFunk');
-    this.XFunkButton.size(200, 50);
+    this.XFunkButton.size(200, 30);
     this.XFunkButton.style('background-color', col);
-    this.XFunkButton.style("font-size", "20");
+    this.XFunkButton.style("font-size", "30px");
     this.XFunkButton.style("border", "none");
     this.XFunkButton.style("color", textColor);
-    this.XFunkButton.position(30, 170);
+    this.XFunkButton.style("font-family", "ArcadeClassic");
+    this.XFunkButton.position(30, 150);
     this.XFunkButton.mousePressed(() => this.setLevel(2));
     
     this.timesButton = createButton('Times');
-    this.timesButton.size(200, 50);
+    this.timesButton.size(200, 30);
     this.timesButton.style('background-color', col);
-    this.timesButton.style("font-size", "20");
+    this.timesButton.style("font-size", "30px");
     this.timesButton.style("border", "none");
     this.timesButton.style("color", textColor);
-    this.timesButton.position(300, 170);
+    this.timesButton.style("font-family", "ArcadeClassic");
+    this.timesButton.position(30, 190);
     this.timesButton.mousePressed(() => this.setLevel(3));
 
     this.GeoButton = createButton ('Slime Dash')
-    this.GeoButton.size(100,50)
+    this.GeoButton.size(300,50)
     this.GeoButton.style('background-color', color(200, 200, 300, 0));
     this.GeoButton.style('border', 'none');
     this.GeoButton.style('color', 'white');
-    this.GeoButton.style("font-size", "20");
-    this.GeoButton.position(0,0);
+    this.GeoButton.style("font-size", "40px");
+    this.GeoButton.style("font-family", "ArcadeClassic");
+    this.GeoButton.position(-30,5);
 
     return 3;
   }

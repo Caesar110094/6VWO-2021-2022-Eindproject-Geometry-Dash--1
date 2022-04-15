@@ -72,7 +72,8 @@ class GameScreen {
     this.MenuButton = createButton('Menu');
     this.MenuButton.size(75,25)
     this.MenuButton.style('background-color', color(200, 200, 300, 0));
-    this.MenuButton.style("font-size", "16");
+    this.MenuButton.style("font-size", "16px");
+    this.MenuButton.style("font-family", "ArcadeClassic");
     this.MenuButton.style("color", "white");
     this.MenuButton.style("border", "black");
     this.MenuButton.position(460,12);
