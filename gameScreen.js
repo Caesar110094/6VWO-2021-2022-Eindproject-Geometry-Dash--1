@@ -31,7 +31,7 @@ class GameScreen {
     this.levels.push(new Level(loadImage('Images/Level2.png'), loadSound('Music/Level2_Music.mp3'), loadImage("Pictures/Layers/GreenBackground.png")));
     this.levels.push(new Level(loadImage('Images/Level3.png'), loadSound('Music/Level3_Music.mp3'), 
 loadImage("Pictures/Layers/PurpleBackground.png")));
-    this.levels.push(new Level(loadImage('Images/Level4.png'), loadSound('Music/Level4_Music.mp3'),loadImage("Pictures/Layers/RedBackground.png"))), 
+    this.levels.push(new Level(loadImage('Images/Level4.png'), loadSound('Music/Level4_Music.mp3'),loadImage("Pictures/Layers/RedBackground.png")));
     this.levels.push(new Level(loadImage('Images/Level5.png'), loadSound('Music/Level5_Music.mp3'), loadImage("Pictures/Layers/Level5_Background.png")));
     
     this.foregroundFloor = loadImage('Pictures/Layers/ForegroundFloor.png');

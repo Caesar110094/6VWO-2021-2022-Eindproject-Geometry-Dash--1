@@ -29,7 +29,7 @@ class Player {
     this.currentIndex = 0;
     this.currentTimer = 0;
 
-    this.jumpCorrectionLength = 6;
+    this.jumpCorrectionLength = 8;
     this.jumpCorrectionTimer = 0;
 
     this.keyWasDown = false;

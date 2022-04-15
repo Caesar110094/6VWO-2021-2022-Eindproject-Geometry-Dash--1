@@ -25,13 +25,14 @@ function preload() {
   }
   
   titleScreen = new TitleScreen(playerData);
+  titleScreen.preload();
+  
   gameScreen = new GameScreen(titleScreen, playerData);
   deadScreen = new DeadScreen();
   winScreen = new WinScreen();
 
   gameScreen.preload();
   winScreen.preload();
-  titleScreen.preload();
   //fg = loadImage("ForegroundFloor.png");
 }
 

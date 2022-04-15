@@ -17,12 +17,14 @@ class TitleScreen {
     this.playerAnimationIndex = 0;
     this.playerAnimationFrameTimer = 0;
 
-    this.music = loadSound("Music/MenuMusic.mp3");
+    this.music;
     
     this.playerData = playerData;
   }
   
   preload() {
+    this.music = loadSound("Music/MenuMusic.mp3");
+    
     this.backgroundImage = loadImage("Pictures/Layers/Background.png");
 
     this.playerAnimation.push(loadImage('Pictures/Player/Still/Still 1&5.png'));
@@ -59,7 +61,7 @@ class TitleScreen {
     textSize(16);
     textFont(this.font);
     text("Door    Joseph      Caesar      Christiaan", 290, 22);
-    
+
     if (this.playGame == false) {
       return 3;
     }
@@ -81,6 +83,9 @@ class TitleScreen {
   }
 
   setup() {
+    this.music.setVolume(0.3);
+    this.music.play();
+    
     let col = 'black';
     let textColor = color(255, 255, 255);
     let finishedTextColor = color(150, 255, 150);
@@ -168,9 +173,6 @@ class TitleScreen {
     this.GeoButton.style("font-size", "40px");
     this.GeoButton.style("font-family", "ArcadeClassic");
     this.GeoButton.position(-30,5);
-
-    this.music.setVolume(0.3);
-    this.music.play();
     
     return 3;
   }
