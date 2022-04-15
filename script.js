@@ -1,17 +1,19 @@
-var gameScreen, deadScreen, winScreen;
+var gameScreen, deadScreen, winScreen, titleScreen;
 
 /*
 0 = GameScreen
 1 = DeadScreen
 2 = WinScreen
+3 = TitleScreen
 */
-var currentScreen = 0;
-var newScreen = 0;
+var currentScreen = 3;
+var newScreen = 3;
 
 function preload() {
   gameScreen = new GameScreen();
   deadScreen = new DeadScreen();
   winScreen = new WinScreen();
+  titleScreen = new TitleScreen();
 
   gameScreen.preload();
   winScreen.preload();
@@ -22,6 +24,7 @@ function setup() {
   createCanvas(600, 400);
 
   gameScreen.setup();
+  titleScreen.setup();
 }
 
 function draw() {
@@ -45,8 +48,11 @@ function draw() {
   else if (currentScreen == 1) {
     newScreen = deadScreen.draw();
   }
-  else {
+  else if (currentScreen == 2) {
     newScreen = winScreen.draw();
+  }
+  else {
+    newScreen = titleScreen.draw();
   }
 }
 
